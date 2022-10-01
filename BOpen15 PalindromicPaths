@@ -1,0 +1,46 @@
+#include <iostream>
+#include<set>
+#include<algorithm>
+using namespace std;
+string field[100];
+set<string> hi;
+int dim, dx[4] = {1,0}, dy[4]={0,1};
+string test[1000];
+int counter = 0;[]\
+void recurse(int a, int b,string add,int paths){
+    if(paths >= dim*2-1){
+        test[counter] = add;
+        ++counter;
+        return;
+    }
+    if(a < 0 || b < 0 || a >= dim || b >= dim){
+        return;
+    }
+    add = add+field[a][b];
+    for(int i = 0; i < 2; ++i){
+        recurse(a+dx[i], b+dy[i], add, paths+1);
+    }
+}
+int main(){
+    cin >> dim;
+    for(int i = 0; i < dim; ++i){
+        cin >> field[i];
+    }
+    int out=0;
+    recurse(0,0,"",0);
+    hi.insert(test,test+counter);
+    string temp, other;
+    for (set<string>::iterator i=hi.begin(); i!=hi.end(); ++i){
+        /*
+        temp= *i;
+        other=*i;
+        temp.erase(dim-1, dim*2-1);
+        other.erase(0, dim);
+         */
+        temp = *i;
+        if (temp == string(temp.rbegin(), temp.rend())) {
+            ++out;
+        }
+    }
+    cout << out;
+}
