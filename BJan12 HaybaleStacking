@@ -1,0 +1,24 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int prefix[1000000];
+int check[1000000];
+int main(){
+    int nob, query;
+    cin >> nob >> query;
+    
+    int temp1, temp2;
+    for(int i = 0; i < query; ++i){
+        cin >> temp1 >> temp2;
+        prefix[temp1-1] = 1;
+        prefix[temp2] = -1;
+    }
+    int pcount=0;
+    for(int i = 0; i < nob; ++i){
+        pcount += prefix[i];
+        check[i]= pcount;
+    }
+    int counter = 0;
+    sort(check, check+nob);
+    cout << check[nob/2];
+}
