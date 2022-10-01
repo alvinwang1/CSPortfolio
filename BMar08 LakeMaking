@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+int dimx, dimy, f, noi;
+int field[100][100];
+int ltemp = 0;
+int xtemp, ytemp, dtemp;
+void indentation(int x, int y, int d){
+    ltemp = 0;
+    for(int i = x; i < x+3; ++i){
+        for(int j = y; j < y+3; ++j){
+            if(field[i][j] > ltemp){
+                ltemp = field[i][j];
+            }
+        }
+    }
+    ltemp -= d;
+    for(int i = x; i < x+3; ++i){
+        for(int j = y; j < y+3; ++j){
+            if(field[i][j] > ltemp){
+                field[i][j] = ltemp;
+            }
+        }
+    }
+}
+int main(){
+    cin >> dimx >> dimy >> f >> noi;
+    for(int i = 0; i < dimx; ++i){
+        for(int j = 0; j < dimy; ++j){
+            cin >> field[i][j];
+        }
+    }
+    for(int i = 0; i < noi; ++i){
+        cin >> xtemp >> ytemp >> dtemp;
+        indentation(xtemp-1, ytemp-1, dtemp);
+    }
+    /*
+    for(int i = 0; i < dimx; ++i){
+        for(int j = 0; j < dimy; ++j){
+            cout << field[i][j] << " ";
+        }
+        cout << endl;
+    }*/
+    int counter = 0;
+    for(int i = 0; i < dimx; ++i){
+        for(int j = 0; j < dimy; ++j){
+            if(field[i][j] < f){
+                counter+=f-field[i][j];
+            }
+        }
+    }
+    cout << counter * 5184;
+}
