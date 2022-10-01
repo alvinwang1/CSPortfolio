@@ -1,0 +1,31 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int main(){
+    int rest;
+    int t[10000];
+    int d[10000];
+    int tcount = 0, dcount = 0;
+    cin >> rest;
+    char temp;
+    int hi;
+    for(int i = 0; i < rest;++i){
+        cin >> temp;
+        cin >> hi;
+        if(temp == 'T'){
+            t[tcount] = hi;
+            ++tcount;
+        }
+        else if(temp == 'D'){
+            d[dcount] = hi;
+            ++dcount;
+        }
+    }
+    int timecount = 0;
+    int discount = 0;
+    sort(t, t+tcount);
+    sort(d,d+dcount);
+    for(int i = 0; i < 1000; ++i){
+        
+    }
+}
