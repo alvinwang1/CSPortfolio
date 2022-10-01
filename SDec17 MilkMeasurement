@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+struct Point{
+    int d;
+    string c;
+    char e;
+    int n;
+};
+bool temp(Point a, Point b){
+    return a.d<b.d;
+}
+int main(){
+    Point cows[100];
+    int incows[3];
+    int leader = 0;
+    for(int i = 0; i < 3; ++i){
+        incows[i] = 7;
+    }
+    int aoc;
+    cin >> aoc;
+    for(int i = 0; i < aoc; ++i){
+        cin >> cows[i].d >> cows[i].c >> cows[i].e >> cows[i].n;
+    }
+    sort(cows, cows+aoc, temp);
+    for(int i = 0; i < aoc; ++i){
+        
+    }
+}
