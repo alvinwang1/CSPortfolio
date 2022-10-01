@@ -1,0 +1,41 @@
+#include <iostream>
+#include <fstream>
+#include <stdlib.h>
+using namespace std;
+int field[4000][4000];
+int x1, y1, x2, y2;
+int main(){
+    for(int i = 0; i < 3000; ++i){
+        for(int j = 0 ; j < 3000; ++j){
+            field[i][j] = 0;
+        }
+    }
+    cin >> x1 >> y1 >> x2 >> y2;
+        for(int i = x1+1001; i < x2+1001;++i){
+        for(int j = y1+1001; j < y2+1001; ++j){
+            field[i][j] = 1;
+    }
+    }
+    cin >> x1 >> y1 >> x2 >> y2;
+    for(int i = x1+1001; i < x2+1001;++i){
+    for(int j = y1+1001; j < y2+1001; ++j){
+            field[i][j] = 2;
+    }
+    }
+    int sx=9999, bx=-9999, sy=9999, by=-999;
+    for(int i = 0; i < 2000; ++i){
+                for(int j = 0; j < 2000; ++j){
+            if(field[i][j] == 1){
+                if(i > bx)
+                    bx = i;
+                if(i < sx)
+                    sx = i;
+                if(j > by)
+                    by = j;
+                if(j < sy)
+                    sy = j;
+            }
+        }
+    }
+    cout << abs(bx-sx+1)*abs(by-sy+1);
+}
