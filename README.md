@@ -1,1 +1,3 @@
-Branches are seperated into USACO and Leetcode files
+Hello, I'm Alvin!
+
+I'm an 18 year old CS student at UCSB from the Bay Area. If you want to see some of my work, reference the USACO, LeetCode, or Web Development branches. 
