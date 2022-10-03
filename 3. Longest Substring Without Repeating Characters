@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+    string b;
+    int ind[1000];
+    int largest = 0;
+    fill(ind, ind+1000, -1);
+    for(int i = 0; i < s.length(); ++i){
+        int a = (int)s[i];
+        int e = ind[a];
+        //cout << ind[a] << " ";
+        if(e != -1 || b[0] == b.back()){
+            int f = b.find(s[i]);
+            //cout << f << endl;
+            b.erase(0,f+1);
+        }
+        ind[a] = i;
+        b+= s[i];
+        
+        if(largest < b.size()){
+            largest = b.size();
+        }
+        bool d = false;
+        if(b[0] == b.back()){
+            d = true;
+        }
+        //cout << b << " " << i << " " << d << endl;
+    }
+    return largest;
+    }
+};
