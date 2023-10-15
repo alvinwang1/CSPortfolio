@@ -1,0 +1,64 @@
+#include <iostream>
+#include<cmath>
+using namespace std;
+int dy[4] = {1, 0, -1, 0},dx[4] = {0, 1, 0, -1}, dimx, dimy, large = 9999;
+char counter;
+char cow[50][50];
+bool used[50][50];
+int ug=0, hg = 0;
+int posx1[50], posy1[50], posx2[50], posy2[50];
+void recurse(int a, int b){
+    if(a >= dimx || a < 0 || b >= dimy || b < 0){
+        return;
+    }
+    for(int i = 0; i < 4; ++i){
+        if(cow[a+dx[i]][b+dy[i]] == 'X'){
+            cow[a+dx[i]][b+dy[i]] = counter;
+            if(counter == '1')
+            {
+                posx1[ug] = a;
+                posy1[ug] = b;
+                ++ug;
+            }
+            else if(counter == '2')
+            {
+                posx2[hg] = a;
+                posy2[hg] = b;
+                ++hg;
+            }
+            recurse(a+dx[i], b+dy[i]);
+        }
+    }
+    return;
+}
+int main(){
+    counter = '1';
+    cin >> dimx >> dimy;
+    for(int i = 0; i < dimx; ++i){
+        for(int j = 0; j < dimy; ++j){
+            used[i][j] = false;
+        }
+    }
+    for(int i = 0; i < dimx; ++i){
+        for(int j = 0; j < dimy; ++j){
+            cin >> cow[i][j];
+        }
+    }
+    for(int i = 0; i < dimx; ++i){
+        for(int j = 0; j < dimy; ++j){
+            if(cow[i][j] == 'X')
+            {
+                cow[i][j] = counter;
+                recurse(i, j);
+                counter = '2';
+            }
+        }
+    }
+    for(int i = 0; i < ug; ++i){
+        cout << posx1[i] << " " << posy1[i] << endl;
+    }
+    for(int i = 0; i < hg; ++i){
+        cout << posx2[i] << " " << posy2[i] << endl;
+    }
+}
+

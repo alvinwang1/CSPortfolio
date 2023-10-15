@@ -1,0 +1,20 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main(){
+    string word, censor;
+    bool pos = false;
+    int counter = -1;
+    cin >> word >> censor;
+    int ra = censor.length();
+    while(pos == false){
+        counter = word.find(censor);
+        if(counter == -1){
+            pos = true;
+        }
+        else{
+            word = word.erase(counter, ra);
+        }
+    }
+    cout << word;
+}

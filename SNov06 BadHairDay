@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+int main(){
+    int noc;
+    int cows[1000000];
+    for(int i = 0; i < 1000000; ++i){
+        cows[i] = 0;
+    }
+    cin >> noc;
+    for(int i = 0; i < noc; ++i){
+        cin >> cows[i];
+    }
+    bool flag;
+    int counter = 0, next;
+    for(int i = 0 ; i < noc; ++i){
+        flag = false;
+        next = 1;
+        do{
+            //cout << cows[i] << " " << cows[i+next] << endl;
+            if(cows[i] > cows[i+next]){
+                ++counter;
+                ++next;
+            }
+            else{
+                flag = true;
+            }
+        }
+        while(flag == false&&next+i < noc);
+    }
+    cout << counter-1;
+}

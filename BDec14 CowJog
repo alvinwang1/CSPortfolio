@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+int noc, initial[1000], speed[1000], setspeed=0, counter = 1;
+int main(){
+    cin >> noc;
+    for(int i = 0; i < noc; ++i){
+        cin >> initial[i] >> speed[i];
+    }
+    if(speed[noc-1] < speed[noc-2]){
+        setspeed = speed[noc-1];
+    }
+    else{
+        ++counter;
+    }
+    for(int i = noc-2; i >= 0; --i){
+        if(setspeed >= speed[i]){
+            ++counter;
+            setspeed = speed[i];
+        }
+    }
+    cout << counter;
+}
+
