@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int noh, mountains[10001], width;
+bool mark[10001];
+int main() {
+    cin >> noh;
+    for (int i = 0; i < noh; ++i){
+        cin >> mountains[i];
+    }
+    int left,right;
+    for (int i = 0; i < noh; ++i) {
+        if (mountains[i] > mountains[i+1] && !mark[i]) {
+            mark[i] = true;
+            left = i;
+            do{
+                --left;
+                mark[left] = true;
+            }while(left >= 0 && mountains[left] <= mountains[left+1]);
+            right = i;
+            do{
+                ++right;
+                mark[right] = true;
+            }while(right < noh && mountains[right] <= mountains[right-1]);
+            if (width < right-left-1){
+                cout << right << " " << left << endl;
+                width = right-left-1;
+            }
+        }
+    }
+    cout << width << endl;
+}

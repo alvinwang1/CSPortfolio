@@ -1,0 +1,44 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+int main(){
+    int nom;
+    int notes[200000];
+    cin >> nom;
+    int noc, test[12];
+    for(int i = 0; i < nom; ++i){
+        cin >> notes[i];
+    }
+    cin >> noc;
+    for(int i = 0; i < noc; ++i){
+        cin >> test[i];
+    }
+    sort(test, test+noc);
+    int cord[20000];
+    for(int i = 0; i < noc-1; ++i){
+        cord[i] = test[i+1]-test[i];
+    }
+    bool flag = false;
+    int second[20000];
+    int counter=0, arr[10000];
+    for(int i = 0; i < nom-noc+1; ++i){
+        flag = false;
+        for(int j = i; j < noc+i; ++j){
+            second[j] = notes[j];
+        }
+        sort(second+i, second+i+noc);
+        for(int j = 0; j < noc-1; ++j){
+            if(second[j+i+1]-second[j+i] != cord[j]){
+                flag = true;
+            }
+        }
+        if(flag == false){
+            arr[counter] = i;
+            ++counter;
+        }
+    }
+    cout << counter << endl;
+    for(int i = 0; i < counter; ++i){
+        cout << arr[i]+1 << endl;
+    }
+}

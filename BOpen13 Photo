@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+int cows[1000080], unf[1090];
+int main(){
+    int noc, nop, temp, counter = 1, output = 0;
+    cin >> noc >> nop;
+    for(int i = 0; i < noc; ++i){
+        cows[i] = 0;
+    }
+    for(int i = 0; i < nop; ++i){
+        unf[i] = 0;
+    }
+    for(int i = 0; i < nop; ++i){
+        cin >> temp;
+        cows[temp] = counter;
+        cin >> temp;
+        cows[temp] = counter;
+        ++counter;
+    }
+   // for(int i = 0; i < noc; ++i){
+    //    cout << cows[i] << endl;
+    //}
+    int eggroll = 0;
+    if(cows[0] == cows[1]){
+        ++output;
+    }
+    if(cows[noc-1] == cows[noc-2]){
+        ++output;
+    }
+    for(int i = 0; i < noc; ++i){
+        if(cows[i] != 0){
+            ++eggroll;
+            ++unf[cows[i]];
+            if(unf[cows[i]] == 2){
+                output++;
+                for(int j = 0; j < nop; ++j){
+                    unf[j] = 0;
+                }
+            }
+        }
+    }
+   // for(int i = 0; i < nop; ++i){
+        //cout << unf[i] << " ";
+   // }
+    //cout << endl;
+   // cout << eggroll << endl;
+    cout << output+1;
+}

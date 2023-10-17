@@ -1,0 +1,34 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+struct Point{
+    int t, ind;
+};
+Point cows[10000];
+int main(){
+    int noc;
+    int curr = 1;
+    cin >> noc;
+    for(int i =1;i < noc+1; ++i){
+        cows[i].t=1;
+        cows[i].ind = i;
+    }
+    cows[1].t = 0;
+    int c, curri;
+    while(1==1){
+        curri = cows[curr].ind;
+        curr+= curr;
+        curr%=noc;
+        if(cows[curr].t == 2){
+            cout << curri  << 29387<< endl;
+            break;
+        }
+        if(curr == 1){
+            cout << curri << 87654<< endl;
+            break;
+        }
+        c = cows[curr].ind;
+        cows[curr].ind = curri;
+        cows[curr].t = 2;
+    }
+}

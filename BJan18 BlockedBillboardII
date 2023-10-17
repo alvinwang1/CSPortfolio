@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+struct Point {
+    int x1, y1, x2, y2;
+};
+int area(Point r){
+    return (r.x2 - r.x1) * (r.y2 - r.y1);
+}
+
+int intersect_area(Point p, Point q){
+    int x_overlap = max(0, min(p.x2, q.x2) - max(p.x1, q.x1));
+    int y_overlap = max(0, min(p.y2, q.y2) - max(p.y1, q.y1));
+    return x_overlap * y_overlap;
+}
+
+int main(){
+    Point a, t;
+    cin >> a.x1 >> a.y1 >> a.x2 >> a.y2;
+    cin >> t.x1 >> t.y1 >> t.x2 >> t.y2;
+    cout << area(a) - intersect_area(a,t) << endl;
+}

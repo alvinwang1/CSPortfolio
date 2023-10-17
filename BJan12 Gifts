@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+int noc, B, price[1000], ship[1000];
+
+void total(void)
+{
+    int temp;
+    bool flag;
+    while (!flag) {
+        flag = true;
+        for (int i=0; i<noc-1; i++)
+            if (price[i]+ship[i] > price[i+1]+ship[i+1]) {
+                temp = price[i];
+                price[i] = price[i+1];
+                price[i+1] = temp;
+                temp = ship[i];
+                ship[i] = ship[i+1];
+                ship[i+1] = temp;
+                flag = false;
+            }
+    }
+}
+
+int test(int c)
+{
+    int budget = B - (price[c]/2+ship[c]), total=1;
+    if (budget < 0) return 0;
+    
+    for (int i=0; i<noc; i++)
+        if (price[i]+ship[i] <= budget && i!=c) {
+            budget -= price[i]+ship[i];
+            total++;
+        }
+    
+    return total;
+}
+
+int main(void)
+{
+    int best=0;
+    cin >> noc >> B;
+    for (int i = 0; i < noc; i++)
+        cin >> price[i] >> ship[i];
+    
+    total();
+    
+    for (int i = 0; i < noc; i++)
+        if (test(i) > best)
+            best = test(i);
+    
+    cout << best;
+}
