@@ -1,0 +1,19 @@
+#include <unordered_map>
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int,int> test;
+        for(int i = 0; i < nums.size(); ++i){
+            test[nums[i]] = i+1;
+        }
+        vector<int> a;
+        for(int i = 0; i < nums.size(); ++i){
+            int c = target - nums[i];
+            if(test[c] && test[c]!=i+1){
+                a.push_back(i); a.push_back(test[c]-1);
+                return a;
+            }
+        }
+        return a;
+    }
+};

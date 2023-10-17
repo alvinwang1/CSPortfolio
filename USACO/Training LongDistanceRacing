@@ -1,0 +1,57 @@
+
+#include <iostream>
+using namespace std;
+struct Point{
+    int num;
+    char type;
+};
+int main(){
+    int limit, nou, u, f, d;
+    cin >> limit >> nou >> u >> f >> d;
+    Point units[100000];
+    char temp;
+    for(int i = 0; i < nou; ++i){
+        cin >> temp;
+        if(temp == 'u'){
+            units[i].num = u+d;
+            units[i].type = 'u';
+        }
+        else if(temp == 'f'){
+            units[i].num = f+f;
+            units[i].type = 'f';
+        }
+        else if(temp == 'd'){
+            units[i].num = d+u;
+            units[i].type = 'd';
+        }
+    }
+    int counter = 0;
+    int sto = 0;
+    int opt = 0;
+    do{
+        if(units[counter].type == 'u'){
+            sto += units[counter].num;
+           
+        }
+        else if(units[counter].type == 'f'){
+            sto += units[counter].num;
+            
+        }
+        else if(units[counter].type == 'd'){
+            sto += units[counter].num;
+            
+        }
+        if(sto < limit){
+            sto+=opt;
+            ++counter;
+        }
+        if(limit < sto){
+            cout << counter;
+            break;
+        }
+    }while(counter <= nou);
+}
+/*
+sto-= d;
+opt = d;
+ */

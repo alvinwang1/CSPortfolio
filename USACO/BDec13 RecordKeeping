@@ -1,0 +1,28 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int aoc;
+string row[10000];
+int main()
+{
+    cin >> aoc;
+    for (int i=0; i<aoc; ++i){
+        string cows[3];
+        cin >> cows[0] >> cows[1] >> cows[2];
+        sort(cows,cows+3);
+        row[i]=cows[0] + " " + cows[1] + " " + cows[2];
+    }
+    int large = -9999;
+    for (int i = 0; i < aoc; ++i){
+        int temp=0;
+        for (int j = 0; j < aoc; ++j){
+            if (row[i]==row[j]){
+                temp++;
+            }
+        }
+        if (large<temp){
+            large=temp;
+        }
+    }
+    cout << large;
+}

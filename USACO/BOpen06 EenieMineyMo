@@ -1,0 +1,29 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+vector<int> pattern,cows;
+int main(){
+    int noc, nop;
+    int start = 0, curr = 0;
+    cin >> noc >> nop;
+    int num;
+    for (int i = 0; i < noc; i++){
+        cows.push_back(i + 1);
+    }
+    for (int i = 0; i < nop; i++){
+        cin >> num;
+        pattern.push_back(num);
+    }
+    while (cows.size() != 1){
+        start += pattern[curr] - 1;
+        while (start >= cows.size()){
+            start -= cows.size();
+        }
+        cows.erase(cows.begin() + start);
+        curr++;
+        if (curr == nop){
+            curr = 0;
+        }
+    }
+    cout << cows[0] << endl;
+}

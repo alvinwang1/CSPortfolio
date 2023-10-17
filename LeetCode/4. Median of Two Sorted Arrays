@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main(){
+    vector<int> nums1;
+    vector<int> nums2;
+    int noc1, noc2;
+    cin >> noc1;
+    for(int i =0; i < noc1; ++i){
+        int j;
+        cin >> j;
+        nums1.push_back(j);
+    }
+    cin >> noc2;
+    for(int i = 0; i < noc2; ++i){
+        int j;
+        cin >> j;
+        nums2.push_back(j);
+    }
+    int counter = 0;
+    int p1 = 0, p2 = 0;
+    if((nums1.size()+nums2.size())%2){
+        while(counter < (nums1.size()+nums2.size())/2-1){
+            if(nums1[p1] <= nums2[p2])
+                p1++;
+            else{
+                p2++;
+            }
+            ++counter;
+        }
+        cout << max(nums1[p1], nums2[p2]);
+    }
+    else{
+        while(counter < (nums1.size()+nums2.size())/2-1){
+            if(nums1[p1] <= nums2[p2])
+                p1++;
+            else{
+                p2++;
+            }
+            ++counter;
+        }
+        cout << p1 << " " << p2 << endl;
+        cout << (double)(nums1[p1]+ nums2[p2])/2;
+    }
+}

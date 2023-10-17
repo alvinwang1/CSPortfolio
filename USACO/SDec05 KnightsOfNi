@@ -1,0 +1,80 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+int main(){
+    int counter = 0;
+    queue<int>row;
+    queue<int>col;
+    queue<int>jumps;
+    queue<bool>shrub;
+    int m, n, m1=1, m2=2, arr[10], counter = 0;
+    cin >> m >> n;
+    int pond[m][n];
+    bool visit[m][n];
+    int fx, fy;
+    for(int i = 0; i < m; ++i){
+        for(int j = 0; j < n; ++j){
+            cin >> pond[i][j];
+            if(pond[i][j] == 2){
+                fx = i;
+                fy = j;
+            }
+        }
+    }
+    row.push(fx);
+    col.push(fy);
+    jumps.push(0);
+    shrub.push(false);
+    /*
+     for(int i = 0; i < m; ++i){
+     for(int j = 0; j < n; ++j){
+     cout << pond[i][j];
+     }
+     cout << endl;
+     }
+     */
+    int r, c,j,s;
+    while(!row.empty()){
+        r = row.front();
+        c = col.front();
+        j = jumps.front();
+        s = shrub.front();
+        row.pop();
+        col.pop();
+        jumps.pop();
+        shrub.pop();
+        if(r >= 0 && c >= 0 && r < m && c < n && pond[r][c] !=1){
+            //cout << r << " " << c <<" " << j <<endl;
+            if(pond[r][c] == 3){
+                arr[counter] = j;
+                ++counter;
+                if(s == true){
+                    cout << j<< endl;
+                //cout << "hiiii" << endl << row.size();
+                    return 0;
+                }
+            }
+            if(!visit[r][c] && s == false){
+                visit[r][c] = true;
+                row.push(r + 1);
+                col.push(c);
+                jumps.push(j + 1);
+                shrub.push(false);
+                row.push(r - 1);
+                col.push(c);
+                jumps.push(j + 1);
+                shrub.push(false);
+                row.push(r);
+                col.push(c + 1);
+                jumps.push(j + 1);
+                shrub.push(false);
+                row.push(r);
+                col.push(c - 1);
+                jumps.push(j + 1);
+                shrub.push(false);
+            }
+        }
+    }
+    cout << arr[counter-1];
+}
+

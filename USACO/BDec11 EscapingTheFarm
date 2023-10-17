@@ -1,0 +1,107 @@
+#include <iostream>
+using namespace std;
+int temp = 0;
+int aoc = 0, cows[30], large = -999;
+int hi1 = 0;
+int hi2 = 0;
+bool used[100], flag = false;
+int sum;
+int rein;
+int tencounter = 1;
+int num;
+int counter = 0;
+int ugh[100], why[100];
+void recurse(int a, int b){
+    for(int k = 0; k < aoc; ++k){
+        if(b>large){
+            large = b;
+        }
+        if(used[k] == false){
+            sum = cows[k];
+            num = cows[k];
+            rein = cows[k];
+            do{
+                num /= 10;
+                ++hi1;
+            }
+            while(num != 0);
+            tencounter = 1;
+            temp = 0;
+            for(int i = 0; i < hi1-1; ++i){
+                tencounter*=10;
+            }
+            for(int i = 0; i < hi1; ++i){
+                ugh[i] = rein/tencounter;
+                rein%=tencounter;
+                tencounter/=10;
+            }
+            tencounter = 1;
+            hi1 = 0;
+            sum = a;
+            num = a;
+            rein = a;
+            while(num != 0){
+                num /= 10;
+                ++hi2;
+            }
+            tencounter = 1;
+            temp = 0;
+            for(int i = 0; i < hi2-1; ++i){
+                tencounter*=10;
+            }
+            for(int i = 0; i < hi2; ++i){
+                why[i] = rein/tencounter;
+                rein%=tencounter;
+                tencounter/=10;
+            }
+            tencounter = 1;
+            hi2 = 0;
+            
+            if(hi1>hi2){
+                hi1-=hi2;
+                for(int j = 0; j < aoc; ++j){
+                    //out << "hihfiwiehfi";
+                    if( ugh[j+hi1] + why[j] >= 10){
+                        flag = true;
+                        //recurse(a+cows[i], b+1);
+                    }
+                }
+            }
+            else if(hi1<=hi2){
+                hi2-=hi1;
+                for(int j = 0; j < aoc; ++j){
+                    if(ugh[j]+why[j+hi2] >= 10){
+                        flag = true;
+                    }
+                }
+            }
+            for(int i =0; i < 100; ++i){
+                ugh[i] = 0;
+                why[i] = 0;
+            }
+            if(flag == false){
+                used[k] = true;
+                recurse(a+cows[k], b+1);
+            }
+        }
+    }
+}
+int main(){
+    for(int i = 0; i < 100; ++i){
+        used[i] = false;
+    }
+    cin >> aoc;
+    for(int i = 0; i < aoc; ++i){
+        cin >> cows[i];
+    }
+    recurse(0,0);
+    cout << large;
+    /*
+     for(int i = 0; i < hi; ++i){
+     cout << ugh[i]<< " ";
+     }
+     for(int i = 0; i < hi; ++i){
+     cout << reverse[i];
+     cout << endl;
+     }*/
+}
